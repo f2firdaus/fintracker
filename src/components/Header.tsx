@@ -3,9 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
-import { LayoutDashboard } from 'lucide-react'
+import { LayoutDashboard, PenBox } from 'lucide-react'
+import { checkUser } from '@/lib/checkUser'
 
-function Header() {
+const Header=async()=> {
+  await checkUser();
   return (
     <div className='fixed-top-0 bg white/80 backdrop:-blur-md z-50 border-b'>
          <nav className='container mx-auto px-4 py-4 flex items-center justify-between'>
@@ -20,10 +22,10 @@ function Header() {
         <span className='hidden md:inline'>Dashboard</span>
       </Button>
       </Link>
-      <Link href={"/transaction/create"} className='flex gap-x-2 items-center'>
-      <Button variant="outline" >
-        <LayoutDashboard size={18} />
-        <span className='hidden md:inline'>Add Transaction</span>
+      <Link href={"/transaction/create"} >
+      <Button className='flex gap-2 items-center text-white bg-black' variant="outline" >
+      <PenBox size={18} />
+        <span className=''>Add Transaction</span>
       </Button>
       </Link>
     </SignedIn>
